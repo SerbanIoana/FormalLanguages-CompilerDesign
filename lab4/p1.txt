@@ -1,0 +1,42 @@
+
+//ax^2 + bx + c = d. solve for x
+
+def main
+{
+    int a, b, c, d, x;
+
+    a = input("a = ");
+    b = input("b = ");
+    c = input("c = ");
+    d = input("d = ");
+
+    if(b>0)
+    {
+        if(c>0)
+        {
+            print(a, "x^2 + ", b, "x + ", c, " = ", d);
+        }
+        else
+        {
+            print(a, "x^2 + ", b, "x ", c, " = ", d);
+        }
+    }
+    else
+    {
+        if(c>0)
+        {
+            print(a, "x^2 ", b, "x + ", c, " = ", d);
+        }
+        else
+        {
+            print(a, "x^2 ", b, "x ", c, " = ", d);
+        }
+    }
+    
+    delta = sqrt(b^2 - 4*a*c);
+    x1 = (-b + delta)/2*a;
+    x2 = (-b - delta)/2*a;
+
+    print("x1 = ", x1);
+    print("x2 = ", x2);
+}

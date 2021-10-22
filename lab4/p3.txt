@@ -1,0 +1,18 @@
+
+//compute the sum of n numbers
+
+def main
+{
+    int n, sum;
+
+    sum = 0;
+    n = input("n = ");
+
+    for(i=0; i<n; i++)
+    {
+        val = input("number " + str(i) + ": ");
+        sum += val;
+    }
+
+    print("the sum of all ", n, " numbers is: ", sum);
+}

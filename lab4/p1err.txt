@@ -1,0 +1,27 @@
+
+//compute de max/min of 3 numbers
+
+def main
+{
+    int a, b, c, 1minVal;       //error "1minVal" identifier
+
+    a = input("a = ");
+    b = input("b = ");
+    c = input("c = ");
+
+    if(a < b)
+    {
+        1minVal = a;
+    }
+    else             
+    {  
+        1minVal = b;
+    {
+
+    if(c < 1minVal)
+    {
+        1minVal = c;
+    }
+
+    print("the minimum value: , minVal);     //error string quotes not closed
+}
