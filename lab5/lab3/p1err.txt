@@ -1,0 +1,24 @@
+def main
+{
+    int a, b, c, 1minVal;
+
+    a = input("a = ");
+    b = input("b = ");
+    c = input("c = ");
+
+    if(a < b)
+    {
+        1minVal = a;
+    }
+    else             
+    {  
+        1minVal = b;
+    {
+
+    if(c < 1minVal)
+    {
+        1minVal = c;
+    }
+
+    print("the minimum value: , minVal);
+}

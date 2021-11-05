@@ -1,0 +1,3 @@
+operators +,-,*,/,^,=,==,!=,<,<=,>,>=,++,--,+=,-=,&&,||,!
+separators {,},(,),[,],:,;
+reserved int,char,string,boolean,if,else,for,while,input,print,sqrt,str,def,main,true,false
