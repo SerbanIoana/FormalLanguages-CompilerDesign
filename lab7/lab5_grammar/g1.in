@@ -1,0 +1,4 @@
+N=S,A,B
+S=S
+T=a,b
+P=(S,a A), (A,a A), (A,b B), (A,b), (B,b B), (B,b)
