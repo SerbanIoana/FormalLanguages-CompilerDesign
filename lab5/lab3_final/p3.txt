@@ -1,0 +1,16 @@
+def main
+{
+    int n, sum;
+    int i, val;
+
+    sum = 0;
+    n = input("n = ");
+
+    for(i=0; i<n; i++)
+    {
+        val = input("number " + i + ": ");
+        sum += val;
+    }
+
+    print("the sum of all ", n, " numbers is: ", sum);
+}

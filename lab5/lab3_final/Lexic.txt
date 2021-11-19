@@ -1,0 +1,95 @@
+
+Alphabet:
+    a)Upper (A-Z) and lower case letters (a-z) of the English alphabet
+    b)Underline character '_'
+    c)Decimal digits (0-9)
+
+
+1. Lexic
+    a)Special symbols
+        -operators + - * / ^ = == != < <= > >= ++ -- += -= && || !
+        -separators {} () [] : ; \n (newline) space tab
+        -reserved words: int, char, string, boolean, if, else, for, while, input, print, sqrt, str, def, main, true, false
+    
+    b)Identifiers
+        -a sequence of letters and  digits, such that the first character is a letter and there are no spaces between the characters; the rule is:
+            identifier := letter {letter | digit | "_"}
+            letter := "a" | "b" | ... | "z" | "A" | "B" | ... | "Z"
+            digit := "0" | "1" | ... | "9"
+            
+    c)Constants
+        1.integer:
+            integer := ["-"] nz_digit {digit} | "0"
+            nz_digit := "1" | "2" | ... | "9"
+            digit := "0" | "1" | ... | "9"
+            
+        2.char:
+            char := 'letter' | 'digit'
+            letter := "a" | "b" | ... | "z" | "A" | "B" | ... | "Z"
+            digit := "0" | "1" | ... | "9"
+            
+        3.string:
+            string := "{letter | digit | special_symbol | separator}"
+            letter := "a" | "b" | ... | "z" | "A" | "B" | ... | "Z"
+            digit := "0" | "1" | ... | "9"
+            special_symbol := "!" | "~" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "(" | ")" | "_" | "-" | "+" | "=" | "`" | "{" | "}" | "[" | "]" | "|" | "\" | ":" | ";" | """ | "'" | "." | "," | "?" | "<" | ">" | "/"
+            separator := " " | "\n"
+            
+        4.boolean:
+            boolean := "true" | "false"
+
+2. Syntax
+    Syntactical rules:
+    
+    program := "def" "main" "{" decl_list cmp_stmt "}"
+    
+    decl_list := decl_stmt "\n" {decl_stmt "\n"}
+    decl_stmt := type IDENTIFIER {"," IDENTIFIER} ";"
+    type := data_type | array_type
+    data_type := "int" | "char" | "string" | "boolean"
+    array_type := data_type "[" elems_number "]"
+    elems_number := nz_digit {digit}
+    
+    cmp_stmt := stmt "\n" {stmt "\n"}
+    stmt := assign_stmt | io_stmt | struct_stmt
+    io_stmt := input_stmt | print_stmt
+    struct_stmt := if_stmt | for_stmt | while_stmt
+    
+    assign_stmt := simple_assign_stmt | add_assign_stmt | sub_assign_stmt
+    simple_assign_stmt := IDENTIFIER "=" expression ";"
+    add_assign_stmt := IDENTIFIER "+=" expression ";"
+    sub_assign_stmt := IDENTIFIER "-=" expression ";"
+    
+    input_stmt := IDENTIFIER "=" "input" "(" [string] ")" ";"
+    
+    print_stmt := "print" "(" (string | IDENTIFIER) {"," (string | IDENTIFIER)} ")" ";"
+    
+    if_stmt := "if" "(" condition ")" "\n" "{" cmp_stmt "}" ["else" "{" cmp_stmt "}"]
+    
+    while_stmt := "while" "(" condition ")" "\n" "{" cmp_stmt "}"
+    
+    for_stmt := "for" "(" init_stmt ";" condition ";" iteration_expr ")" "\n" "{" cmp_stmt "}"
+    init_stmt := IDENTIFIER "=" integer
+    iteration_expr := inc_dec_expr
+
+    condition := rel_expr | logic_expr
+    
+    expression := rel_expr | arithm_expr | inc_dec_expr | logic_expr | neg_expr | sqrt_expr | IDENTIFIER | constant
+    constant := integer | char | string | boolean
+    
+    rel_expr := (IDENTIFIER | constant | arithm_expr) rel_op (IDENTIFIER | constant | arithm_expr)
+    rel_op := "==" | "!=" | "<" | "<=" | ">" | ">="
+    
+    arithm_expr := ["("](IDENTIFIER | integer) arithm_op (IDENTIFIER | integer) [")"] {arithm_op (IDENTIFIER | integer)}
+    arithm_op := "+" | "-" | "*" | "/" | "^"
+    
+    inc_dec_expr := (inc_dec_op IDENTIFIER) | (IDENTIFIER inc_dec_op) [";"]
+    inc_dec_op := "++" | "--"
+    
+    logic_expr := rel_expr logic_op rel_expr {logic_op rel_expr}
+    logic_op := "&&" | "||"
+    
+    neg_expr := neg_op ["("] expression [")"]
+    neg_op := "!"
+    
+    sqrt_expr := "sqrt" "(" arithm_expr ")"
