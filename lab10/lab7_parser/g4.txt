@@ -1,0 +1,12 @@
+N = S`A`B`C`D
+S = S
+T = +`*`(`)`a
+P =
+S := B A
+A := + B A
+A := eps
+B := D C
+C := * D C
+C := eps
+D := ( S )
+D := a
