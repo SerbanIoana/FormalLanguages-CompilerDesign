@@ -1,0 +1,64 @@
+N = program`A`B`C`D`E`F`G`H`I`J`K`L`M`N`P`Q`R`S`T`U`V`W`X`Y`Z`decl_list`decl_stmt`decl_aux`type`data_type`array_type`cmp_stmt`stmt`assign_stmt`io_stmt`struct_stmt`input_stmt`print_stmt`print_aux`print_operand`if_stmt`for_stmt`while_stmt`expression`simple_assign_stmt`add_assign_stmt`sub_assign_stmt`condition`init_stmt`iteration_expr`rel_expr`rel_operand`arithm_expr`arithm_comp`arithm_operand`inc_dec_expr`logic_expr`logic_comp`neg_expr`sqrt_expr`rel_op`arithm_op`inc_dec_op`logic_op`neg_op
+S = program
+T = def`main`{`}`\n`;`int`char`string`boolean`[`]`=`+=`-=`(`)`input`print`if`else`while`for`==`!=`<`<=`>`>=`+`-`*`/`^`++`--`!`||`&&`sqrt`,`IDENTIFIER`CONSTANT
+P =
+program := def main { decl_list cmp_stmt }
+decl_list := decl_stmt \n A
+A := eps | decl_list
+decl_stmt := type IDENTIFIER B ;
+B := eps | decl_aux
+decl_aux := , IDENTIFIER B
+type := data_type C
+C := eps | array_type
+data_type := int | char | string | boolean
+array_type := data_type [ CONSTANT ]
+cmp_stmt := stmt \n D
+D := eps | cmp_stmt
+stmt := IDENTIFIER F | print_stmt | struct_stmt
+F := assign_stmt | E
+io_stmt := input_stmt | print_stmt
+struct_stmt := if_stmt | for_stmt | while_stmt
+assign_stmt := add_assign_stmt | sub_assign_stmt
+simple_assign_stmt := expression ;
+add_assign_stmt := += expression ;
+sub_assign_stmt := -= expression ;
+input_stmt := input ( H ) ;
+H := eps | CONSTANT
+E := = G
+G := simple_assign_stmt | input_stmt
+print_stmt := print ( print_operand I ) ;
+I := eps | print_aux
+print_aux := , print_operand I
+print_operand := CONSTANT | IDENTIFIER
+if_stmt := if ( condition ) \n { cmp_stmt } J
+J := eps | else { cmp_stmt }
+while_stmt := while ( condition ) \n { cmp_stmt }
+for_stmt := for ( init_stmt ; condition ; iteration_expr ) \n { cmp_stmt }
+init_stmt := IDENTIFIER = CONSTANT
+iteration_expr := inc_dec_expr
+condition := rel_expr | logic_expr
+expression := Q | inc_dec_expr | logic_expr | neg_expr | sqrt_expr | IDENTIFIER | CONSTANT
+Q := rel_expr | R
+rel_expr := rel_operand rel_op rel_operand
+rel_operand := IDENTIFIER | CONSTANT | R
+rel_op := == | != | < | <= | > | >=
+R := S arithm_expr T
+S := eps | (
+T := eps | )
+arithm_expr := arithm_operand arithm_op arithm_operand K
+arithm_comp := arithm_op arithm_operand K
+K := eps | arithm_comp
+arithm_operand := IDENTIFIER | CONSTANT | R
+arithm_op := + | - | * | / | ^
+inc_dec_expr := inc_dec_op IDENTIFIER L
+L := eps | ;
+inc_dec_op := ++ | --
+logic_expr := rel_expr logic_op rel_expr M
+logic_comp := logic_op rel_expr M
+M := eps | logic_comp
+logic_op := && | ||
+neg_expr := neg_op N
+N := ( P ) | P
+P := expression
+neg_op := !
+sqrt_expr := sqrt ( arithm_expr )

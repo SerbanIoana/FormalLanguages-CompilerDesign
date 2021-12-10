@@ -1,0 +1,8 @@
+N = S`A`B`C
+S = S
+T = a`b`d`g`h
+P =
+S := A C B | C b b | B a
+A := d a | B C
+B := g | eps
+C := h | eps
